@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+    <nb-card>
+      <nb-card-header>List</nb-card-header>
+      <nb-card-body>
+        <div ng-if="staticData">
+          <ul class="mb-5">
+            <a *ngFor="let job of staticData;" style="text-decoration:none;" (click)="onSearch(job)" #keyword>
+              <li class="list-group-item">
+                {{ job }}
+              </li>
+            </a>
+          </ul>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
+      <nb-card size="large">
+          <nb-card-header>Result</nb-card-header>
+          <nb-card-body>
+            <ng-container *ngIf="foundJob; else elseTemplate">
+                <ul class="mb-5">
+                    <a *ngFor="let jobs of foundJob; let i=index" target="_blank" href="{{ link[i] }}" style="text-decoration:none;">
+                      <li class="list-group-item">
+                        {{ jobs }}
+                      </li>
+                    </a>
+                  </ul>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <h5>ไม่มีการค้นหา</h5>
+            </ng-template>
+          </nb-card-body>
+      </nb-card>
+  </div>
+</div>
